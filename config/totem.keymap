@@ -189,10 +189,10 @@
         NUMBERS {
             label = "Navigation";
             bindings = <
-          &none  &kp N7        &kp N8        &kp N9        &kp PERIOD    &kp PLUS      &kp HOME      &kp UP    &kp END        &kt PAGE_UP
-          &none  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp N0        &kp KP_EQUAL  &kp LEFT      &kp DOWN  &kp RIGHT      &none
-&kt CAPS  &none  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp MINUS     &none         &kp LA(LEFT)  &none     &kp LA(RIGHT)  &kt PAGE_DOWN  &none
-                               &trans        &trans        &trans        &trans        &trans        &trans
+          &none  &kp N7        &kp N8        &kp N9        &kp PERIOD    &kp PLUS   &kp HOME      &kp UP    &kp END        &kt PAGE_UP
+          &none  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp N0        &none      &kp LEFT      &kp DOWN  &kp RIGHT      &none
+&kt CAPS  &none  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp MINUS     &kp EQUAL  &kp LA(LEFT)  &none     &kp LA(RIGHT)  &kt PAGE_DOWN  &none
+                               &trans        &trans        &trans        &trans     &trans        &trans
             >;
         };
 
@@ -206,13 +206,13 @@
             >;
         };
 
-        sim_layer {
-            label = "SYSTEM";
+        SYSTEM {
+            label = "Media";
             bindings = <
-            &none   &none   &none         &none       &none         &none         &none         &none       &none       &none
-            &trans  &trans  &trans        &trans      &trans        &kp C_MUTE    &kp C_PP      &trans      &trans      &trans
-&bt BT_CLR  &trans  &trans  &out OUT_TOG  &bt BT_PRV  &bt BT_NXT    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PREV  &kp C_NEXT  &trans  &trans
-                            &trans        &trans      &trans        &trans        &trans        &trans
+            &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none         &none         &none       &none       &none
+            &none         &none         &none         &none         &none           &kp C_MUTE    &kp C_PP      &trans      &none       &none
+&bt BT_CLR  &none         &out OUT_TOG  &none         &bt BT_PRV    &bt BT_NXT      &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PREV  &kp C_NEXT  &none  &none
+                                        &trans        &trans        &trans          &trans        &trans        &trans
             >;
         };
     };
