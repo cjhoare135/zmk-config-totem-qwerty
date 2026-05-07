@@ -1,5 +1,3 @@
-#TOTEM
-
 #include "zmk-helpers/helper.h"
 #include "zmk-helpers/key-labels/totem.h"
 #include <behaviors.dtsi>
