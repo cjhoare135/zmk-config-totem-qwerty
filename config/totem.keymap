@@ -1,13 +1,14 @@
 //
-//                                                        ▀▀▀▀▀     ▀▀▀▀▀          ▀▀█▀▀
-//                                                        ▄▀▀▀▄  ▄  ▄▀▀▀▄  ▄  ▄▀▀▀▄  █  ▄▀▀▀▄
-//                                                        █   █  █  █   █  █  █   █  █  █   █
-//                                                         ▀▀▀   █   ▀▀▀   █   ▀▀▀   ▀   ▀▀▀
-//                                                               █      ▄▄▄█▄▄▄    █   █
-//                                                               ▀      █  █  █     █▄█
-//                                                             ▀▀▀▀▀    █  █  █      ▀
-//                                                                      ▀  ▀  ▀
+// ▀▀▀▀▀ ▀▀▀▀▀ ▀▀█▀▀
+// ▄▀▀▀▄ ▄ ▄▀▀▀▄ ▄ ▄▀▀▀▄ █ ▄▀▀▀▄
+// █ █ █ █ █ █ █ █ █ █ █
+// ▀▀▀ █ ▀▀▀ █ ▀▀▀ ▀ ▀▀▀
+// █ ▄▄▄█▄▄▄ █ █
+// ▀ █ █ █ █▄█
+// ▀▀▀▀▀ █ █ █ ▀
+// ▀ ▀ ▀
 //
+
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 #include "zmk-helpers/helper.h"
@@ -23,30 +24,15 @@
 #define NAV  1
 #define DIG  2
 #define SYS  3
+
 #define QUICK_TAP_MS 175
 
 /* Timeless homerow mods */
 // https://github.com/urob/zmk-config/tree/main#timeless-homerow-mods
 
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4 LB5  // left hand
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4 RB5  // right hand
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4 LB5 // left hand
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4 RB5 // right hand
 #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2 // thumb cluster for both hands
-
-// proper urob's home row, uncomment it if you are not going to use visual editor
-//#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
-//    ZMK_HOLD_TAP(NAME, \
-//        flavor = "balanced"; \
-//        tapping-term-ms = <280>; \
-//        quick-tap-ms = <QUICK_TAP_MS>; \
-//        require-prior-idle-ms = <150>; \
-//        bindings = <HOLD>, <TAP>; \
-//        hold-trigger-key-positions = <TRIGGER_POS>; \
-//        hold-trigger-on-release; \
-//    )
-//
-//MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
-//MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
-//MAKE_HRM(hml_layer, &mo, &kp, KEYS_R THUMBS) // switch layer like HRM
 
 &mt {
     quick-tap-ms = <100>;
@@ -68,9 +54,8 @@
          *  2. Modifier to press while layer is active
          *
          * Example:
-         *  `&lm NUM_LAYER LSHIFT`
+         *   `&lm NUM_LAYER LSHIFT`
          */
-
         lm: lm {
             compatible = "zmk,behavior-macro-two-param";
             wait-ms = <0>;
@@ -134,12 +119,10 @@
 
     behaviors {
         // this is homerow mod that works identical to urob's one, but this one allows visual editor to understand
-
         hml: hml {
             compatible = "zmk,behavior-hold-tap";
             label = "HML";
             bindings = <&kp>, <&kp>;
-
             #binding-cells = <2>;
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
@@ -153,7 +136,6 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HMR";
             bindings = <&kp>, <&kp>;
-
             #binding-cells = <2>;
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
@@ -167,10 +149,24 @@
             compatible = "zmk,behavior-hold-tap";
             label = "slash_or_comm";
             bindings = <&comment>, <&kp>;
-
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             flavor = "tap-preferred";
+        };
+
+        // Custom hold-tap for Backspace / Numbers layer
+        // Tap = Backspace (with autorepeat via quick-tap)
+        // Hold = Numbers layer (Layer 1)
+        // Tap-then-hold within 175ms = Backspace autorepeat
+        bspc_num: bspc_num {
+            compatible = "zmk,behavior-hold-tap";
+            label = "BSPC_NUM";
+            bindings = <&mo>, <&kp>;
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
         };
     };
 
@@ -180,67 +176,67 @@
         Base {
             label = "QWERTY";
             bindings = <
-       &kp Q        &kp W        &kp E         &kp R              &kp T        &kp Y      &kp U               &kp I         &kp O             &kp P
-       &hml LCMD A  &hml LALT S  &hml LCTRL D  &hml LEFT_SHIFT F  &kp G        &kp H      &hmr RIGHT_SHIFT J  &hmr RCTRL K  &hmr RIGHT_ALT L  &hmr RMETA APOS
-&none  &kp Z        &kp X        &kp C         &kp V              &kp B        &kp N      &kp M               &kp COMMA     &kp DOT           &kp SLASH        &none
-                                 &lt 3 ESCAPE  &lt 4 SPACE        &lt 5 TAB    &lt 2 RET  &lt 1 BACKSPACE     &lt 6 DEL
+                &kp Q           &kp W           &kp E           &kp R           &kp T           &kp Y           &kp U           &kp I           &kp O           &kp P
+                &hml LCMD A     &hml LALT S     &hml LCTRL D    &hml LEFT_SHIFT F &kp G           &kp H           &hmr RIGHT_SHIFT J &hmr RCTRL K   &hmr RIGHT_ALT L &hmr RMETA APOS
+                &none           &kp Z           &kp X           &kp C           &kp V           &kp B           &kp N           &kp M           &kp COMMA       &kp DOT         &kp SLASH       &none
+                                                &lt 3 ESCAPE    &lt 4 SPACE     &lt 5 TAB       &lt 2 RET       &bspc_num 1 BACKSPACE &lt 6 DEL
             >;
         };
 
         NUMBERS {
             label = "Navigation";
             bindings = <
-       &kp LEFT_BRACKET  &kp N7        &kp N8        &kp N9        &kp RIGHT_BRACKET    &none  &none            &none      &none          &none
-       &kp SEMI          &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp EQUAL            &none  &kp RIGHT_SHIFT  &kp RCTRL  &kp RIGHT_ALT  &kp RMETA
-&none  &kp GRAVE         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH        &none  &none            &none      &none          &none      &none
-                                       &kp PERIOD    &kp N0        &kp MINUS            &none  &none            &none
+                &kp LEFT_BRACKET &kp N7          &kp N8          &kp N9          &kp RIGHT_BRACKET &none           &none           &none           &none           &none
+                &kp SEMI        &kp NUMBER_4    &kp N5          &kp NUMBER_6    &kp EQUAL       &none           &kp RIGHT_SHIFT &kp RCTRL       &kp RIGHT_ALT   &kp RMETA
+                &none           &kp GRAVE       &kp NUMBER_1    &kp NUMBER_2    &kp NUMBER_3    &kp BACKSLASH   &none           &none           &none           &none           &none           &none
+                                                &kp PERIOD      &kp N0          &kp MINUS       &none           &none           &none
             >;
         };
 
         SYMBOLS {
             label = "LShift plus numbers";
             bindings = <
-       &kp LEFT_BRACE  &kp AMPERSAND  &kp STAR              &kp LPAR               &kp RIGHT_BRACE    &none  &none            &none      &none          &none
-       &kp COLON       &kp DOLLAR     &kp PERCENT           &kp CARET              &kp PLUS           &none  &kp RIGHT_SHIFT  &kp RCTRL  &kp RIGHT_ALT  &kp RWIN
-&none  &kp TILDE       &kp EXCL       &kp AT                &kp HASH               &kp PIPE           &none  &none            &none      &none          &none     &none
-                                      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDER          &none  &none            &none
+                &kp LEFT_BRACE  &kp AMPERSAND   &kp STAR        &kp LPAR        &kp RIGHT_BRACE &none           &none           &none           &none           &none
+                &kp COLON       &kp DOLLAR      &kp PERCENT     &kp CARET       &kp PLUS        &none           &kp RIGHT_SHIFT &kp RCTRL       &kp RIGHT_ALT   &kp RWIN
+                &none           &kp TILDE       &kp EXCL        &kp AT          &kp HASH        &kp PIPE        &none           &none           &none           &none           &none           &none
+                                                &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp UNDER &none      &none           &none
             >;
         };
 
         MEDIA {
             label = "Media";
             bindings = <
-                &none         &none     &none      &none      &none    &bt BT_CLR         &none             &none              &bt BT_PRV       &bt BT_NXT
-                &kp LEFT_GUI  &kp LALT  &kp LCTRL  &kp LSHFT  &none    &ext_power EP_TOG  &kp K_PREV        &kp K_VOLUME_DOWN  &kp K_VOLUME_UP  &kp K_NEXT
-&bt BT_CLR_ALL  &none         &none     &none      &none      &none    &out OUT_TOG       &bt BT_SEL 0      &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3  &bt BT_SEL 4
-                                        &none      &none      &none    &kp K_STOP         &kp K_PLAY_PAUSE  &kt K_MUTE
+                &none           &none           &none           &none           &none           &bt BT_CLR      &none           &none           &bt BT_PRV      &bt BT_NXT
+                &kp LEFT_GUI    &kp LALT        &kp LCTRL       &kp LSHFT       &none           &ext_power EP_TOG &kp K_PREV    &kp K_VOLUME_DOWN &kp K_VOLUME_UP &kp K_NEXT
+                &bt BT_CLR_ALL  &none           &none           &none           &none           &none           &out OUT_TOG    &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4
+                                                &none           &none           &none           &kp K_STOP      &kp K_PLAY_PAUSE &kt K_MUTE
             >;
         };
 
         Navigation {
             bindings = <
-       &none     &none         &none      &none       &none    &kp K_REDO  &kp LC(V)       &kp LC(C)      &kp LC(X)     &kp K_UNDO
-       &kp LCMD  &kp LEFT_ALT  &kp LCTRL  &kp LSHIFT  &none    &kp CAPS    &kp LEFT_ARROW  &kp DOWN       &kp UP_ARROW  &kp RIGHT
-&none  &none     &none         &none      &none       &none    &kp INS     &kp HOME        &kp PAGE_DOWN  &kp PAGE_UP   &kp END     &none
-                               &none      &none       &none    &none       &none           &none
+                &none           &none           &none           &none           &none           &kp K_REDO      &kp LC(V)       &kp LC(C)       &kp LC(X)       &kp K_UNDO
+                &kp LCMD        &kp LEFT_ALT    &kp LCTRL       &kp LSHIFT      &none           &kp CAPS        &kp LEFT_ARROW  &kp DOWN        &kp UP_ARROW    &kp RIGHT
+                &none           &none           &none           &none           &none           &none           &kp INS         &kp HOME        &kp PAGE_DOWN   &kp PAGE_UP     &kp END         &none
+                                                &none           &none           &none           &none           &none           &none
             >;
         };
 
         Mouse {
             bindings = <
-       &none         &none     &none      &none      &none    &kp K_REDO  &kp K_PASTE     &kp K_COPY      &kp K_CUT     &kp K_UNDO
-       &kp LEFT_GUI  &kp LALT  &kp LCTRL  &kp LSHFT  &none    &none       &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT
-&none  &none         &none     &none      &none      &none    &none       &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none
-                               &none      &none      &none    &mkp RCLK   &mkp LCLK       &mkp MCLK
+                &none           &none           &none           &none           &none           &kp K_REDO      &kp K_PASTE     &kp K_COPY      &kp K_CUT       &kp K_UNDO
+                &kp LEFT_GUI    &kp LALT        &kp LCTRL       &kp LSHFT       &none           &none           &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP    &mmv MOVE_RIGHT
+                &none           &none           &none           &none           &none           &none           &none           &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP    &msc SCRL_RIGHT &none
+                                                &none           &none           &none           &mkp RCLK       &mkp LCLK       &mkp MCLK
             >;
         };
 
         Function {
             bindings = <
-       &kp F12  &kp F7  &kp F8     &kp F9     &kp PRINTSCREEN    &none  &none       &none      &none     &none
-       &kp F11  &kp F4  &kp F5     &kp F6     &kp SCROLLLOCK     &none  &kp RSHIFT  &kp RCTRL  &kp RALT  &kp RMETA
-&none  &kp F10  &kp F1  &kp F2     &kp F3     &kp PAUSE_BREAK    &none  &none       &none      &none     &none      &none
-                        &kp K_APP  &kp SPACE  &kp TAB            &none  &none       &none
+                &kp F12         &kp F7          &kp F8          &kp F9          &kp PRINTSCREEN &none           &none           &none           &none           &none
+                &kp F11         &kp F4          &kp F5          &kp F6          &kp SCROLLLOCK  &none           &kp RSHIFT      &kp RCTRL       &kp RALT        &kp RMETA
+                &none           &kp F10         &kp F1          &kp F2          &kp F3          &kp PAUSE_BREAK &none           &none           &none           &none           &none           &none
+                                                &kp K_APP       &kp SPACE       &kp TAB         &none           &none           &none
             >;
         };
     };
