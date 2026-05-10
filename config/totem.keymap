@@ -30,14 +30,14 @@
 
 / {
     combos {
-    compatible = "zmk,combos";
-    combo_gaming {
-        timeout-ms = <200>;
-        key-positions = <RH0 RH1 RH2>;
-        bindings = <&tog 7>;
-        layers = <0 7>;
+        compatible = "zmk,combos";
+        combo_gaming {
+            timeout-ms = <200>;
+            key-positions = <RH0 RH1 RH2>;
+            bindings = <&tog 7>;
+            layers = <0 7>;
+        };
     };
-};
 
     macros {
         /**
@@ -234,8 +234,8 @@
                                                 &kp K_APP       &kp SPACE       &kp TAB         &none           &none           &none
             >;
         };
-    };
-Gaming {
+
+        Gaming {
             label = "GAMING";
             bindings = <
                 &none           &kp CAPS        &kp Q           &kp W           &kp E           &kp R           &trans          &trans          &trans          &trans          &trans          &trans
@@ -254,4 +254,5 @@ Gaming {
                                                 &trans          &trans          &trans          &trans          &trans          &trans
             >;
         };
+    };
 };
