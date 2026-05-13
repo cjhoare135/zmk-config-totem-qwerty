@@ -238,8 +238,8 @@
         Gaming {
             label = "GAMING";
             bindings = <
-                &none           &kp CAPS        &kp Q           &kp W           &kp E           &kp R           &trans          &trans          &trans          &trans          &trans          &trans
-                &none           &kp LSHFT       &kp A           &kp S           &kp D           &kp F           &trans          &trans          &trans          &trans          &trans          &trans
+                &kp CAPS        &kp Q           &kp W           &kp E           &kp R           &trans          &trans          &trans          &trans          &trans
+                &kp LSHFT       &kp A           &kp S           &kp D           &kp F           &trans          &trans          &trans          &trans          &trans
                 &kp Z           &kp LCTRL       &kp X           &kp C           &kp V           &kp M           &trans          &trans          &trans          &trans          &trans          &trans
                                                 &kp ESC         &kp SPACE       &lt 8 TAB       &trans          &trans          &trans
             >;
@@ -248,8 +248,8 @@
         Gaming_Numbers {
             label = "GAMENUMS";
             bindings = <
-                &none           &kp N7          &kp N8          &kp N9          &kp N0          &trans          &trans          &trans          &trans          &trans          &trans          &trans
-                &none           &kp N4          &kp N5          &kp N6          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
+                &kp N7          &kp N8          &kp N9          &kp N0          &trans          &trans          &trans          &trans          &trans          &trans
+                &kp N4          &kp N5          &kp N6          &trans          &trans          &trans          &trans          &trans          &trans          &trans
                 &none           &kp N1          &kp N2          &kp N3          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
                                                 &trans          &trans          &trans          &trans          &trans          &trans
             >;
