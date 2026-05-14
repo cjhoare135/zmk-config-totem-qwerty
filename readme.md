@@ -1,6 +1,6 @@
 # TOTEM Keyboard — cjhoare135 Keymap
 
-A custom ZMK firmware configuration for the [TOTEM](https://github.com/GEIGEIGEIST/zmk-config-totem) 38-key split keyboard. QWERTY base with Miryoku-style layers, home row mods, and a dedicated Gaming mode.
+A custom ZMK firmware configuration for the [TOTEM](https://github.com/GEIGEIGEIST/zmk-config-totem) 38-key split keyboard. QWERTY base with Miryoku-style layers and home row mods.
 
 ---
 
@@ -40,4 +40,4 @@ A custom ZMK firmware configuration for the [TOTEM](https://github.com/GEIGEIGEI
 
 ---
 
-*cjhoare135 · TOTEM 38-key split · ZMK firmware · 9 layers (0–8)*
+*cjhoare135 · TOTEM 38-key split · ZMK firmware · 7 layers (0–6)*
