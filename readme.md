@@ -15,7 +15,9 @@ A custom ZMK firmware configuration for the [TOTEM](https://github.com/GEIGEIGEI
 
 ## Keymap Reference
 
-![TOTEM Keymap Reference](docs/keymap_reference.png)
+[![TOTEM Keymap Reference](docs/keymap_reference.png)](docs/totem_keymap_reference.html)
+
+[Interactive HTML reference](docs/totem_keymap_reference.html)
 
 ---
 
